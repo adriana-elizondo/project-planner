@@ -8,20 +8,57 @@
 
 /* Begin PBXBuildFile section */
 		262907121DD2CAC600916819 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262907111DD2CAC600916819 /* AppDelegate.swift */; };
-		262907141DD2CAC600916819 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262907131DD2CAC600916819 /* ViewController.swift */; };
 		262907171DD2CAC600916819 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 262907151DD2CAC600916819 /* Main.storyboard */; };
 		262907191DD2CAC600916819 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 262907181DD2CAC600916819 /* Assets.xcassets */; };
 		2629071C1DD2CAC600916819 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2629071A1DD2CAC600916819 /* LaunchScreen.storyboard */; };
+		262907251DD2CEF400916819 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262907241DD2CEF400916819 /* NetworkHelper.swift */; };
+		262907281DD2D21100916819 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262907271DD2D21100916819 /* Project.swift */; };
+		2629072A1DD2D21A00916819 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262907291DD2D21A00916819 /* Task.swift */; };
+		263B63D01DD32666009E91C1 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263B63CF1DD32666009E91C1 /* ObjectMapper.framework */; };
+		263B63D11DD32666009E91C1 /* ObjectMapper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 263B63CF1DD32666009E91C1 /* ObjectMapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		263B63D41DD332AE009E91C1 /* ProjectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B63D31DD332AE009E91C1 /* ProjectListViewController.swift */; };
+		263B63D71DD33342009E91C1 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B63D61DD33342009E91C1 /* ProjectTableViewCell.swift */; };
+		26E6864A1DD3076500487C52 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E686481DD3076500487C52 /* Realm.framework */; };
+		26E6864B1DD3076500487C52 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26E686481DD3076500487C52 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		26E6864C1DD3076500487C52 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E686491DD3076500487C52 /* RealmSwift.framework */; };
+		26E6864D1DD3076500487C52 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26E686491DD3076500487C52 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		26E686511DD31C0200487C52 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E686501DD31C0200487C52 /* Parser.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2629073F1DD304DB00916819 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				263B63D11DD32666009E91C1 /* ObjectMapper.framework in Embed Frameworks */,
+				26E6864D1DD3076500487C52 /* RealmSwift.framework in Embed Frameworks */,
+				26E6864B1DD3076500487C52 /* Realm.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2629070E1DD2CAC600916819 /* ProjectPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		262907111DD2CAC600916819 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		262907131DD2CAC600916819 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		262907161DD2CAC600916819 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		262907181DD2CAC600916819 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2629071B1DD2CAC600916819 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2629071D1DD2CAC600916819 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		262907241DD2CEF400916819 /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkHelper.swift; path = NetworkHelper/NetworkHelper.swift; sourceTree = "<group>"; };
+		262907271DD2D21100916819 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Project.swift; path = Models/Project.swift; sourceTree = "<group>"; };
+		262907291DD2D21A00916819 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		2629072C1DD3042400916819 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../Downloads/realm-swift-2.0.3/ios/swift-3.0.1/Realm.framework"; sourceTree = "<group>"; };
+		2629072D1DD3042400916819 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../../Downloads/realm-swift-2.0.3/ios/swift-3.0.1/RealmSwift.framework"; sourceTree = "<group>"; };
+		263B63CF1DD32666009E91C1 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = ../Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
+		263B63D31DD332AE009E91C1 /* ProjectListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectListViewController.swift; path = ViewCotrollers/ProjectListViewController.swift; sourceTree = "<group>"; };
+		263B63D61DD33342009E91C1 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectTableViewCell.swift; path = TableViewCells/ProjectTableViewCell.swift; sourceTree = "<group>"; };
+		26E686481DD3076500487C52 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Realm.framework; sourceTree = "<group>"; };
+		26E686491DD3076500487C52 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../RealmSwift.framework; sourceTree = "<group>"; };
+		26E686501DD31C0200487C52 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Parser.swift; path = Helpers/Parser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +66,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				263B63D01DD32666009E91C1 /* ObjectMapper.framework in Frameworks */,
+				26E6864C1DD3076500487C52 /* RealmSwift.framework in Frameworks */,
+				26E6864A1DD3076500487C52 /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +80,7 @@
 			children = (
 				262907101DD2CAC600916819 /* ProjectPlanner */,
 				2629070F1DD2CAC600916819 /* Products */,
+				2629072B1DD3042400916819 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +95,79 @@
 		262907101DD2CAC600916819 /* ProjectPlanner */ = {
 			isa = PBXGroup;
 			children = (
+				263B63D51DD3332B009E91C1 /* TableViewCells */,
+				263B63D21DD33279009E91C1 /* ViewControllers */,
+				263B63C81DD31F53009E91C1 /* Frameworks */,
+				26E6864F1DD31BED00487C52 /* Helpers */,
+				262907261DD2D06800916819 /* Models */,
+				262907231DD2CED500916819 /* NetworkHelper */,
 				262907111DD2CAC600916819 /* AppDelegate.swift */,
-				262907131DD2CAC600916819 /* ViewController.swift */,
 				262907151DD2CAC600916819 /* Main.storyboard */,
 				262907181DD2CAC600916819 /* Assets.xcassets */,
 				2629071A1DD2CAC600916819 /* LaunchScreen.storyboard */,
 				2629071D1DD2CAC600916819 /* Info.plist */,
 			);
 			path = ProjectPlanner;
+			sourceTree = "<group>";
+		};
+		262907231DD2CED500916819 /* NetworkHelper */ = {
+			isa = PBXGroup;
+			children = (
+				262907241DD2CEF400916819 /* NetworkHelper.swift */,
+			);
+			name = NetworkHelper;
+			sourceTree = "<group>";
+		};
+		262907261DD2D06800916819 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				262907271DD2D21100916819 /* Project.swift */,
+				262907291DD2D21A00916819 /* Task.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		2629072B1DD3042400916819 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2629072C1DD3042400916819 /* Realm.framework */,
+				2629072D1DD3042400916819 /* RealmSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		263B63C81DD31F53009E91C1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				263B63CF1DD32666009E91C1 /* ObjectMapper.framework */,
+				26E686481DD3076500487C52 /* Realm.framework */,
+				26E686491DD3076500487C52 /* RealmSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		263B63D21DD33279009E91C1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				263B63D31DD332AE009E91C1 /* ProjectListViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		263B63D51DD3332B009E91C1 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				263B63D61DD33342009E91C1 /* ProjectTableViewCell.swift */,
+			);
+			name = TableViewCells;
+			sourceTree = "<group>";
+		};
+		26E6864F1DD31BED00487C52 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				26E686501DD31C0200487C52 /* Parser.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +180,8 @@
 				2629070A1DD2CAC600916819 /* Sources */,
 				2629070B1DD2CAC600916819 /* Frameworks */,
 				2629070C1DD2CAC600916819 /* Resources */,
+				2629073F1DD304DB00916819 /* Embed Frameworks */,
+				26E6864E1DD3076D00487C52 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -96,6 +204,7 @@
 				TargetAttributes = {
 					2629070D1DD2CAC600916819 = {
 						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = W3RCCUG568;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -131,13 +240,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		26E6864E1DD3076D00487C52 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework/strip-frameworks.sh\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2629070A1DD2CAC600916819 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				262907141DD2CAC600916819 /* ViewController.swift in Sources */,
+				263B63D41DD332AE009E91C1 /* ProjectListViewController.swift in Sources */,
+				26E686511DD31C0200487C52 /* Parser.swift in Sources */,
+				262907251DD2CEF400916819 /* NetworkHelper.swift in Sources */,
+				2629072A1DD2D21A00916819 /* Task.swift in Sources */,
 				262907121DD2CAC600916819 /* AppDelegate.swift in Sources */,
+				262907281DD2D21100916819 /* Project.swift in Sources */,
+				263B63D71DD33342009E91C1 /* ProjectTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +388,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = W3RCCUG568;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ProjectPlanner",
+					"$(PROJECT_DIR)/ProjectPlanner/Frameworks",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ProjectPlanner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adriana.ProjectPlanner;
@@ -270,6 +408,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = W3RCCUG568;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ProjectPlanner",
+					"$(PROJECT_DIR)/ProjectPlanner/Frameworks",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ProjectPlanner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adriana.ProjectPlanner;
@@ -297,6 +443,7 @@
 				262907221DD2CAC600916819 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
