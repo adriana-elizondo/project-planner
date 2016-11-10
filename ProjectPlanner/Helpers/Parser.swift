@@ -11,7 +11,7 @@ import RealmSwift
 
 class Parser{
     
-    static func parseAndPersistProjectList(jsonArray: [Any]?, completion:@escaping (Results<Project>) -> Void){
+    static func parseAndPersistProjectList(jsonArray: [Any]?, completion:@escaping ([Project]) -> Void){
         let realm = try! Realm()
         
         guard jsonArray != nil else {return}
@@ -20,15 +20,13 @@ class Parser{
             if let current = project as? [String : Any],
                 let currentProject = Project(JSON: current) {
                 try! realm.write {
-                    realm.add(currentProject)
+                    realm.add(currentProject, update: true)
                 }
             }
         }
-        completion(realm.objects(Project.self))
+            completion(Array(realm.objects(Project.self)))
+        
     }
     
-    static func projectList() -> Results<Project>{
-        let realm = try! Realm()
-        return realm.objects(Project.self)
-    }
+    
 }

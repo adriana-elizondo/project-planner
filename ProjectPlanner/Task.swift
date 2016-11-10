@@ -14,10 +14,10 @@ class Task: Object, Mappable{
     dynamic var id = ""
     dynamic var title = ""
     dynamic var completed = false
-    dynamic var deadline = Date()
+    var deadline = Deadline()
     dynamic var projectId = 0
     
-    override class func primaryKey() -> String? {
+    override static func primaryKey() -> String? {
         return "id"
     }
     
@@ -31,7 +31,28 @@ class Task: Object, Mappable{
         title <- map["name"]
         completed <- map["completed"]
         projectId <- map["project_id"]
-        deadline <- (map["deadline"], DateTransform())
+        deadline <- (map["deadline"])
+    }
+    
+    
+}
+
+class Deadline : TransformType{
+    typealias Object = Date
+    typealias JSON = Double
+    
+    public func transformFromJSON(_ value: Any?) -> Date? {
+        if let timeInt = value as? Double {
+            return Date.init(timeIntervalSince1970: timeInt)
+        }
+        return nil
+    }
+    
+    public func transformToJSON(_ value: Date?) -> Double?{
+        if let date = value {
+            return Double(date.timeIntervalSince1970 * 1000.0)
+        }
+        return nil
     }
     
 }

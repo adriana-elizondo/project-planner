@@ -14,8 +14,8 @@ class Project : Object, Mappable{
     dynamic var id = ""
     dynamic var title = ""
     let tasks = List<Task>()
-    
-    override class func primaryKey() -> String? {
+
+    override static func primaryKey() -> String? {
         return "id"
     }
     
@@ -26,7 +26,7 @@ class Project : Object, Mappable{
     // Mappable
     func mapping(map: Map) {
         id    <- map["id"]
-        title         <- map["name"]
+        title <- map["name"]
         
         var tasks: [Task]?
         tasks      <- map["tasks"]

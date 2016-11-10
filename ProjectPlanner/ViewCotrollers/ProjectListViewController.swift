@@ -12,7 +12,7 @@ import UIKit
 class ProjectListViewController: UIViewController {
     var projectList = [Project](){
         didSet{
-            noProjectsLabel.isHidden = projectList.count > 0 ? true : false
+            noProjectsLabel.isHidden = !projectList.isEmpty
             //On the main thread because it involves UI
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -30,26 +30,60 @@ class ProjectListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getProjects()
+        ProjectHelper.getProjectsWithCompletion(loadLocal: true){ (projects) in
+            self.projectList = projects
+        }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationViewController = segue.destination as? ProjectViewController
+        if let cell = sender as? ProjectTableViewCell{
+            destinationViewController?.project = projectList[cell.tag]
+        }
+    }
+    
 }
 
 //Logic
 extension ProjectListViewController{
-    func getProjects(){
-        let persistedList = Parser.projectList()
-        guard persistedList.count > 0 else {
-            NetworkHelper.getDataWithDomain(domain: "projects") { (success, result, error) in
+    @IBAction func addProject(){
+        let alertController = UIAlertController.init(title: "New Project", message: "", preferredStyle: .alert)
+        
+        let addAction = UIAlertAction.init(title: "Add", style: .default) { _ in
+            let titleTextField = alertController.textFields![0] as UITextField
+            ProjectHelper.addProjectWithTitle(title: titleTextField.text ?? "") { (success, error) in
                 if success{
-                    Parser.parseAndPersistProjectList(jsonArray: result as? [Any], completion: { (projects) in
-                        self.projectList = Array(projects)
-                    })
+                    print("success")
+                    self.projectList = ProjectHelper.projectList()
+                }else{
+                    print("ooops \(error)")
                 }
             }
-            return
+            alertController.dismiss(animated: true, completion: nil)
         }
         
-        projectList = Array(persistedList)
+        alertController.addAction(addAction)
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Title"
+            
+            NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { (notification) in
+                addAction.isEnabled = !(textField.text?.isEmpty)!
+            }
+        }
+        
+        let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel){ _ in
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func refreshProjects(){
+        ProjectHelper.getProjectsWithCompletion(loadLocal: false) { (projects) in
+            self.projectList = projects
+        }
     }
 }
 
@@ -65,7 +99,8 @@ extension ProjectListViewController : UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell") as? ProjectTableViewCell
         let project : Project = projectList[indexPath.row]
-        cell?.name.text = project.title
+        cell?.setDataWithProject(project: project)
+        cell?.tag = indexPath.row
         
         return cell ?? UITableViewCell()
     }
@@ -74,5 +109,25 @@ extension ProjectListViewController : UITableViewDataSource, UITableViewDelegate
         return 70
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        self.performSegue(withIdentifier: "tasksSegue", sender: cell)
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let delete = UITableViewRowAction.init(style: .destructive, title: "Delete") { (action, indexpath) in
+            let project = self.projectList[indexPath.row]
+            ProjectHelper.deleteProject(project: project){ (success, error) in
+                self.projectList = ProjectHelper.projectList()
+            }
+        }
+        
+        return [delete]
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+    }
     
 }

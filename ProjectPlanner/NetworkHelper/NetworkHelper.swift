@@ -10,12 +10,14 @@ import Foundation
 import UIKit
 
 private let baseUrl = "http://localhost:8090/"
+public typealias RequestResponse = (Bool, Any?, Error?) -> Void
 
 class NetworkHelper{
-    typealias RequestResponse = (Bool, Any?, Error?) -> Void
     
     static func getDataWithDomain(domain: String, completion: @escaping RequestResponse){
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        }
         
         guard let url = URL.init(string: baseUrl+domain) else {
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
@@ -25,16 +27,37 @@ class NetworkHelper{
         requestWith(url: URLRequest.init(url: url), completion: completion)
     }
     
-    static func postDataWithDomain(domain: String, completion: @escaping RequestResponse){
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    static func postDataWithDomain(domain: String, parameters: String,completion: @escaping RequestResponse){
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        }
         
-        guard let url = URL.init(string: baseUrl+domain) else {
+        guard let url = URL.init(string: baseUrl+domain+"?"+parameters) else {
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             return
         }
         
         var request = URLRequest.init(url: url)
         request.httpMethod = "POST"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+
+        requestWith(url: request, completion: completion)
+    }
+    
+    static func deleteDataWithDomain(domain: String, parameters: String,completion: @escaping RequestResponse){
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        }
+        
+        guard let url = URL.init(string: baseUrl+domain+"/"+parameters) else {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            return
+        }
+        
+        var request = URLRequest.init(url: url)
+        request.httpMethod = "DELETE"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
         requestWith(url: request, completion: completion)
     }
     
@@ -42,7 +65,6 @@ class NetworkHelper{
         let session = URLSession.init(configuration: URLSessionConfiguration.default)
         
         session.dataTask(with: url) { (data, response, error) in
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             if let data = data {
                 let json = try? JSONSerialization.jsonObject(with: data, options: [])
                 if let code = (response as? HTTPURLResponse)?.statusCode , 200...299 ~= code{
@@ -51,6 +73,11 @@ class NetworkHelper{
                     completion(false, nil, error)
                 }
             }
+            
+            DispatchQueue.main.async {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }
+            
             }.resume()
     }
 }
