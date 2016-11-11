@@ -13,10 +13,7 @@ class ProjectListViewController: UIViewController {
     var projectList = [Project](){
         didSet{
             noProjectsLabel.isHidden = !projectList.isEmpty
-            //On the main thread because it involves UI
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            self.tableView.reloadData()
         }
     }
     
@@ -30,9 +27,7 @@ class ProjectListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        ProjectHelper.getProjectsWithCompletion(loadLocal: true){ (projects) in
-            self.projectList = projects
-        }
+        projectList = ProjectHelper.projectList()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -81,8 +76,10 @@ extension ProjectListViewController{
     }
     
     @IBAction func refreshProjects(){
-        ProjectHelper.getProjectsWithCompletion(loadLocal: false) { (projects) in
-            self.projectList = projects
+        ProjectHelper.getProjectsWithCompletion() { (projects) in
+            if let refreshedProjects = projects {
+                self.projectList = refreshedProjects
+            }
         }
     }
 }

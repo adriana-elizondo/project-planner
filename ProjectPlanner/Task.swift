@@ -14,8 +14,8 @@ class Task: Object, Mappable{
     dynamic var id = ""
     dynamic var title = ""
     dynamic var completed = false
-    var deadline = Deadline()
-    dynamic var projectId = 0
+    var deadline = Date()
+    dynamic var projectId = ""
     
     override static func primaryKey() -> String? {
         return "id"
@@ -28,10 +28,10 @@ class Task: Object, Mappable{
     // Mappable
     func mapping(map: Map) {
         id    <- map["id"]
-        title <- map["name"]
+        title <- map["title"]
         completed <- map["completed"]
         projectId <- map["project_id"]
-        deadline <- (map["deadline"])
+        deadline <- (map["deadline"], Deadline())
     }
     
     

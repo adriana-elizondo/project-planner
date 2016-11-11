@@ -40,7 +40,7 @@ class NetworkHelper{
         var request = URLRequest.init(url: url)
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-
+        
         requestWith(url: request, completion: completion)
     }
     
@@ -72,6 +72,8 @@ class NetworkHelper{
                 }else{
                     completion(false, nil, error)
                 }
+            }else{
+                completion(false, nil, error)
             }
             
             DispatchQueue.main.async {

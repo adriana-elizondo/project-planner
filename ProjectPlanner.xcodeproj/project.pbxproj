@@ -20,6 +20,9 @@
 		263B63D71DD33342009E91C1 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B63D61DD33342009E91C1 /* ProjectTableViewCell.swift */; };
 		263B63D91DD33F5D009E91C1 /* ProjectHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B63D81DD33F5D009E91C1 /* ProjectHelper.swift */; };
 		263B63DB1DD4462D009E91C1 /* ProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B63DA1DD4462D009E91C1 /* ProjectViewController.swift */; };
+		263B63DD1DD47D0C009E91C1 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B63DC1DD47D0C009E91C1 /* TaskTableViewCell.swift */; };
+		263B63DF1DD4819D009E91C1 /* TaskHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B63DE1DD4819D009E91C1 /* TaskHelper.swift */; };
+		263B63E11DD490C9009E91C1 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B63E01DD490C9009E91C1 /* TaskViewController.swift */; };
 		26E6864A1DD3076500487C52 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E686481DD3076500487C52 /* Realm.framework */; };
 		26E6864B1DD3076500487C52 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26E686481DD3076500487C52 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		26E6864C1DD3076500487C52 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E686491DD3076500487C52 /* RealmSwift.framework */; };
@@ -60,6 +63,9 @@
 		263B63D61DD33342009E91C1 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectTableViewCell.swift; path = TableViewCells/ProjectTableViewCell.swift; sourceTree = "<group>"; };
 		263B63D81DD33F5D009E91C1 /* ProjectHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectHelper.swift; path = Helpers/ProjectHelper.swift; sourceTree = "<group>"; };
 		263B63DA1DD4462D009E91C1 /* ProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectViewController.swift; path = ViewCotrollers/ProjectViewController.swift; sourceTree = "<group>"; };
+		263B63DC1DD47D0C009E91C1 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskTableViewCell.swift; path = TableViewCells/TaskTableViewCell.swift; sourceTree = "<group>"; };
+		263B63DE1DD4819D009E91C1 /* TaskHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskHelper.swift; path = Helpers/TaskHelper.swift; sourceTree = "<group>"; };
+		263B63E01DD490C9009E91C1 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskViewController.swift; path = ViewCotrollers/TaskViewController.swift; sourceTree = "<group>"; };
 		26E686481DD3076500487C52 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Realm.framework; sourceTree = "<group>"; };
 		26E686491DD3076500487C52 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../RealmSwift.framework; sourceTree = "<group>"; };
 		26E686501DD31C0200487C52 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Parser.swift; path = Helpers/Parser.swift; sourceTree = "<group>"; };
@@ -155,6 +161,7 @@
 			children = (
 				263B63D31DD332AE009E91C1 /* ProjectListViewController.swift */,
 				263B63DA1DD4462D009E91C1 /* ProjectViewController.swift */,
+				263B63E01DD490C9009E91C1 /* TaskViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -163,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				263B63D61DD33342009E91C1 /* ProjectTableViewCell.swift */,
+				263B63DC1DD47D0C009E91C1 /* TaskTableViewCell.swift */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -172,6 +180,7 @@
 			children = (
 				26E686501DD31C0200487C52 /* Parser.swift */,
 				263B63D81DD33F5D009E91C1 /* ProjectHelper.swift */,
+				263B63DE1DD4819D009E91C1 /* TaskHelper.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -268,8 +277,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				263B63D41DD332AE009E91C1 /* ProjectListViewController.swift in Sources */,
+				263B63DF1DD4819D009E91C1 /* TaskHelper.swift in Sources */,
 				26E686511DD31C0200487C52 /* Parser.swift in Sources */,
+				263B63DD1DD47D0C009E91C1 /* TaskTableViewCell.swift in Sources */,
 				263B63DB1DD4462D009E91C1 /* ProjectViewController.swift in Sources */,
+				263B63E11DD490C9009E91C1 /* TaskViewController.swift in Sources */,
 				262907251DD2CEF400916819 /* NetworkHelper.swift in Sources */,
 				2629072A1DD2D21A00916819 /* Task.swift in Sources */,
 				262907121DD2CAC600916819 /* AppDelegate.swift in Sources */,
