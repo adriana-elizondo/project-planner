@@ -13,32 +13,11 @@ class ProjectTableViewCell : UITableViewCell{
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var completedLabel: UILabel!
     @IBOutlet weak var pendingLabel: UILabel!
-    @IBOutlet weak var completedImageView: UIImageView!{
-        didSet{
-            completedImageView.layer.cornerRadius = completedImageView.frame.width / 2
-            completedImageView.clipsToBounds = true
-        }
-    }
-    @IBOutlet weak var pendingImageView: UIImageView!{
-        didSet{
-            pendingImageView.layer.cornerRadius = pendingImageView.frame.width / 2
-            pendingImageView.clipsToBounds = true
-        }
-    }
+    @IBOutlet weak var completedImageView: UIImageView!
+    @IBOutlet weak var pendingImageView: UIImageView!
     
-    var completedTasks : [Task]{
-        didSet{
-            completedImageView.isHidden = completedTasks.count > 0 ? false : true
-            completedLabel.isHidden = completedTasks.count > 0 ? false : true
-        }
-    }
-    
-    var pendingTasks : [Task]{
-        didSet{
-            pendingLabel.isHidden = pendingTasks.count > 0 ? false : true
-            pendingImageView.isHidden = pendingTasks.count > 0 ? false : true
-        }
-    }
+    var completedTasks : [Task]
+    var pendingTasks : [Task]
     
     required init?(coder aDecoder: NSCoder) {
         completedTasks = [Task]()

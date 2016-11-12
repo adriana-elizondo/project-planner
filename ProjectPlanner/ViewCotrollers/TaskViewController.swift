@@ -32,13 +32,14 @@ class TaskViewController : UIViewController {
         }
     }
     @IBOutlet weak var statusSwitch: UISwitch!
-    @IBOutlet weak var okButton: UIButton!
-    
-    var datePickerView = UIDatePicker(){
+    @IBOutlet weak var okButton: UIButton!{
         didSet{
-            datePickerView.date = Date()
+            okButton.layer.cornerRadius = 8
+            okButton.clipsToBounds = true
         }
     }
+    
+    var datePickerView = UIDatePicker()
     var isEditingTask : Bool = false
     var task = Task()
     var project = Project()
@@ -70,7 +71,7 @@ class TaskViewController : UIViewController {
             }
 
         }else{
-            TaskHelper.addTaskWithData(projectId: projectId, title: titleTextField.text ?? "", deadline: String(dateValue) , completed: statusSwitch.isOn.description){ (success, object) in
+            TaskHelper.addTaskWithData(projectId: projectId, title: titleTextField.text ?? "", deadline: datePickerView.date , completed: statusSwitch.isOn){ (success, object) in
                 if success{
                     DispatchQueue.main.async {
                         if let project = object as? Project{

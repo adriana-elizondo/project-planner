@@ -26,10 +26,12 @@ class Project : Object, Mappable{
     // Mappable
     func mapping(map: Map) {
         id    <- map["id"]
-        title <- map["name"]
+        
+        let name = map["name"].currentValue as! String
+        self.title = name.removingPercentEncoding!
         
         var tasks: [Task]?
-        tasks      <- map["tasks"]
+        tasks <- map["tasks"]
         if let tasks = tasks {
             for task in tasks {
                 self.tasks.append(task)
@@ -37,4 +39,3 @@ class Project : Object, Mappable{
         }
     }
 }
-

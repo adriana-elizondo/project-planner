@@ -12,89 +12,63 @@ import RealmSwift
 class TaskHelper{
     
     //Post project to server and persist
-    static func addTaskWithData(projectId : String, title: String, deadline: String, completed : String, completion : @escaping (_ success : Bool, _ object: Any?) -> Void){
+    static func addTaskWithData(projectId : String, title: String, deadline: Date, completed : Bool, completion : @escaping (_ success : Bool, _ object: Any?) -> Void){
+        let parameters = "title=\(title)&deadline=\(String(doubleValueOfDate(date: deadline)))&completed=\(completed.description)"
+        let domain = "projects/\(projectId)/tasks"
+        let task = Task()
+        task.title = title
+        task.deadline = deadline
+        task.completed = completed
         
-        NetworkHelper.postDataWithDomain(domain: "projects/"+projectId+"/tasks", parameters:"title="+title+"&deadline="+deadline+"&completed="+completed){ (success, result, error) in
+        postToServer(task: task, projectId: projectId, domain: domain, parameters: parameters, completion: completion)
+    }
+    
+    static func postToServer(task: Task, projectId: String, domain: String, parameters: String, completion : @escaping (_ success : Bool, _ error: Any?) -> Void){
+        NetworkHelper.postDataWithDomain(domain: domain, parameters:parameters){ (success, result, error) in
             if success {
-                if let result = result as? [String : Any], let task = Task.init(JSON: result){
-                    DispatchQueue.main.async {
-                        print("JSON \(result)")
-                        if let project = ProjectHelper.projectWithId(projectId: projectId){
-                            do {
-                                try realm.write {
-                                    project.tasks.append(task)
-                                    realm.add(project)
-                                }
-                                completion(true, project)
-                            }catch{
-                                completion(false, error)
-                            }
-                        }
-                    }
+                if let result = result as? [String : Any],
+                    let newTask = Task.init(JSON: result){
+                    RealmHelper.appendToList(taskToAppend: newTask, projectId: projectId, completion: completion)
                 }
             } else {
-                completion(false, error)
+                RealmHelper.appendToList(taskToAppend: task, projectId: projectId, completion: completion)
             }
         }
     }
     
     //Patch task
-    static func patchTask(task:Task, projectId: String, title: String, deadline: String, completed : String, completion : @escaping (_ success : Bool, _ error: Any?) -> Void){
+    static func patchTask(task : Task, projectId: String, title: String, deadline: String, completed : String, completion : @escaping (_ success : Bool, _ error: Any?) -> Void){
         let parameters = "title=\(title)&deadline=\(deadline)&completed=\(completed)"
         NetworkHelper.patchDataWithDomain(domain: "projects/\(projectId)/tasks/\(task.id)", parameters:parameters){ (success, result, error) in
+            var oldTask = task
             if success {
-                if let result = result as? [String : Any], let task = Task.init(JSON: result){
-                    DispatchQueue.main.async {
-                        if let project = ProjectHelper.projectWithId(projectId: projectId),
-                            let index = project.tasks.index(of: TaskHelper.taskWithId(taskId: task.id)!){
-                            do {
-                                try realm.write {
-                                    var old = project.tasks[index]
-                                    old = task
-                                    realm.add(old, update: true)
-                                }
-                                completion(true, project)
-                            }catch{
-                                completion(false, error)
-                            }
-                        }
-                    }
+                if let result = result as? [String : Any],
+                    let newTask = Task.init(JSON: result){
+                    oldTask = newTask
+                    RealmHelper.persistObject(object: oldTask, completion: completion)
                 }
             } else {
-                completion(false, error)
             }
-        }
 
+        }
     }
+    
+    
     
     //Delete task from server and local db
     static func deleteTask(task: Task, projectId: String, completion : @escaping (_ success : Bool, _ error: Any?) -> Void){
         NetworkHelper.deleteDataWithDomain(domain: "projects/"+projectId+"/tasks", parameters: task.id){ (success, result, error) in
-            if success{
-                DispatchQueue.main.async {
-                    if let project = ProjectHelper.projectWithId(projectId: projectId),
-                        let index = project.tasks.index(of: task){
-                        do {
-                            try realm.write {
-                                project.tasks.remove(objectAtIndex: index)
-                                realm.add(project, update: true)
-                                realm.delete(task)
-                            }
-                            completion(success, nil)
-                        }catch{
-                            completion(false, error)
-                        }
-                    }
-                }
+            if success {
+                RealmHelper.deleteObject(object: task, completion: completion)
             } else {
-                completion(false, error)
+                RealmHelper.deleteObject(object: task, completion: completion)
             }
         }
-        
     }
     
     static func taskListForProject(project : Project) -> [Task]{
-        return Array(realm.objects(Task.self).filter("projectId == '\(project.id)'"))
+        let tasks = Array(realm.objects(Task.self).filter("projectId == '\(project.id)'"))
+        return tasks
     }
     
     static func taskWithId(taskId: String) -> Task? {
@@ -112,7 +86,7 @@ extension TaskHelper{
     }
     
     static func doubleValueOfDate(date: Date) -> Double{
-        return Double(date.timeIntervalSince1970 * 1000.0)
+        return Double(date.timeIntervalSince1970 / 1000.0)
     }
     
     static func sortByName(tasks : [Task]) -> [Task]{

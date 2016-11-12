@@ -28,7 +28,10 @@ class Task: Object, Mappable{
     // Mappable
     func mapping(map: Map) {
         id    <- map["id"]
-        title <- map["title"]
+        
+        let name = map["title"].currentValue as! String
+        self.title = name.removingPercentEncoding!
+        
         completed <- map["completed"]
         projectId <- map["project_id"]
         deadline <- (map["deadline"], Deadline())
@@ -50,7 +53,7 @@ class Deadline : TransformType{
     
     public func transformToJSON(_ value: Date?) -> Double?{
         if let date = value {
-            return Double(date.timeIntervalSince1970 * 1000.0)
+            return Double(date.timeIntervalSince1970)
         }
         return nil
     }

@@ -71,7 +71,7 @@ class ProjectViewController: UIViewController {
     @IBAction func sortByDeadline(){
         taskList = TaskHelper.sortByDeadline(tasks: taskList)
     }
-
+    
 }
 
 extension ProjectViewController : UITableViewDataSource, UITableViewDelegate{
@@ -112,7 +112,20 @@ extension ProjectViewController : UITableViewDataSource, UITableViewDelegate{
             }
         }
         
-        return [delete]
+        let task = taskList[indexPath.row]
+        let dateValue = TaskHelper.doubleValueOfDate(date: task.deadline)
+        let completeTask = UITableViewRowAction.init(style: .normal, title: task.completed ? "Undo" : "Finish") { (action, indexpath) in
+            TaskHelper.patchTask(task: task, projectId: self.project.id, title: task.title, deadline: String(dateValue), completed: (!task.completed).description){ (success, object) in
+                DispatchQueue.main.async {
+                    if let updated = ProjectHelper.projectWithId(projectId: self.project.id){
+                        self.project = updated
+                    }
+                }
+            }
+        }
+        
+        
+        return [delete, completeTask]
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

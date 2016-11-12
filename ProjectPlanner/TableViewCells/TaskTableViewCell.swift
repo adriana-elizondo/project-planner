@@ -26,7 +26,7 @@ class TaskTableViewCell : UITableViewCell {
         formatter.dateStyle = .medium
         deadline.text = formatter.string(from: task.deadline)
         
-        statusImage.backgroundColor = task.completed ? UIColor.green : UIColor.red
+        statusImage.backgroundColor = task.completed ? UIColor.init(colorLiteralRed: 66/255.0, green: 187/255.0, blue: 167/255.0, alpha: 1) : UIColor.init(colorLiteralRed: 205/255.0, green: 99/255.0, blue: 88/255.0, alpha: 1)
     }
 
     

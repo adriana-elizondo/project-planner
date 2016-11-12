@@ -32,7 +32,7 @@ class NetworkHelper{
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
         }
         
-        guard let url = URL.init(string: baseUrl+domain+"?"+parameters) else {
+        guard let url = URL.init(string: baseUrl+domain+"?"+parameters.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) else {
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             return
         }
@@ -49,7 +49,7 @@ class NetworkHelper{
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
         }
         
-        guard let url = URL.init(string: baseUrl+domain+"?"+parameters) else {
+        guard let url = URL.init(string: baseUrl+domain+"?"+parameters.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) else {
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             return
         }
@@ -67,7 +67,7 @@ class NetworkHelper{
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
         }
         
-        guard let url = URL.init(string: baseUrl+domain+"/"+parameters) else {
+        guard let url = URL.init(string: baseUrl+domain+"/"+parameters.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) else {
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             return
         }

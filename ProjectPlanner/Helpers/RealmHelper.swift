@@ -35,6 +35,36 @@ class RealmHelper{
             }
         }
     }
-
-
+    
+    static func appendToList(taskToAppend: Task, projectId: String, completion : @escaping (_ success : Bool, _ error: Any?) -> Void){
+        DispatchQueue.main.async {
+            do {
+                try realm.write {
+                    if let project = ProjectHelper.projectWithId(projectId: projectId){
+                        project.tasks.append(taskToAppend)
+                        realm.add(project)
+                        completion(true, project)
+                    }
+                }
+            }catch{
+                completion(false, error)
+            }
+        }
+    }
+    
+    static func replaceTaskInList(updatedTask: Task, oldTask: Task, projectId: String,  completion : @escaping (_ success : Bool, _ error: Any?) -> Void){
+        DispatchQueue.main.async {
+            do {
+                try realm.write {
+                    if let project = ProjectHelper.projectWithId(projectId: projectId){
+                        
+                        realm.add(project)
+                        completion(true, project)
+                    }
+                }
+            }catch{
+                completion(false, error)
+            }
+        }
+    }
 }

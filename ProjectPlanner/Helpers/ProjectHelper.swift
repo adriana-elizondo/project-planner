@@ -64,9 +64,7 @@ class ProjectHelper {
     static func deleteProject(project: Project, completion : @escaping (_ success : Bool, _ error: Any?) -> Void){
         NetworkHelper.deleteDataWithDomain(domain: "projects", parameters:project.id){ (success, result, error) in
             if success {
-                if let result = result as? [String : Any], let project = Project.init(JSON: result){
-                    RealmHelper.deleteObject(object: project, completion: completion)
-                }
+                RealmHelper.deleteObject(object: project, completion: completion)
             } else {
                 RealmHelper.deleteObject(object: project, completion: completion)
             }
