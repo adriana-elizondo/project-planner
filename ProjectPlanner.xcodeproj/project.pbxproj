@@ -23,6 +23,7 @@
 		263B63DD1DD47D0C009E91C1 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B63DC1DD47D0C009E91C1 /* TaskTableViewCell.swift */; };
 		263B63DF1DD4819D009E91C1 /* TaskHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B63DE1DD4819D009E91C1 /* TaskHelper.swift */; };
 		263B63E11DD490C9009E91C1 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B63E01DD490C9009E91C1 /* TaskViewController.swift */; };
+		26713DFC1DD6E83F000D0992 /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26713DFB1DD6E83F000D0992 /* RealmHelper.swift */; };
 		26E6864A1DD3076500487C52 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E686481DD3076500487C52 /* Realm.framework */; };
 		26E6864B1DD3076500487C52 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26E686481DD3076500487C52 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		26E6864C1DD3076500487C52 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E686491DD3076500487C52 /* RealmSwift.framework */; };
@@ -65,6 +66,7 @@
 		263B63DC1DD47D0C009E91C1 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskTableViewCell.swift; path = TableViewCells/TaskTableViewCell.swift; sourceTree = "<group>"; };
 		263B63DE1DD4819D009E91C1 /* TaskHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskHelper.swift; path = Helpers/TaskHelper.swift; sourceTree = "<group>"; };
 		263B63E01DD490C9009E91C1 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskViewController.swift; path = ViewCotrollers/TaskViewController.swift; sourceTree = "<group>"; };
+		26713DFB1DD6E83F000D0992 /* RealmHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmHelper.swift; path = Helpers/RealmHelper.swift; sourceTree = "<group>"; };
 		26E686481DD3076500487C52 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Realm.framework; sourceTree = "<group>"; };
 		26E686491DD3076500487C52 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../RealmSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -178,6 +180,7 @@
 			children = (
 				263B63D81DD33F5D009E91C1 /* ProjectHelper.swift */,
 				263B63DE1DD4819D009E91C1 /* TaskHelper.swift */,
+				26713DFB1DD6E83F000D0992 /* RealmHelper.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				263B63D41DD332AE009E91C1 /* ProjectListViewController.swift in Sources */,
+				26713DFC1DD6E83F000D0992 /* RealmHelper.swift in Sources */,
 				263B63DF1DD4819D009E91C1 /* TaskHelper.swift in Sources */,
 				263B63DD1DD47D0C009E91C1 /* TaskTableViewCell.swift in Sources */,
 				263B63DB1DD4462D009E91C1 /* ProjectViewController.swift in Sources */,

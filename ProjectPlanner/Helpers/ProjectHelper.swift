@@ -53,48 +53,44 @@ class ProjectHelper {
         NetworkHelper.postDataWithDomain(domain: "projects", parameters:"name="+project.title){ (success, result, error) in
             if success {
                 if let result = result as? [String : Any], let project = Project.init(JSON: result){
-                    persistProject(project: project, completion: completion)
+                    RealmHelper.persistObject(object: project, completion: completion)
                 }
             } else {
-                persistProject(project: project, completion: completion)
+                RealmHelper.persistObject(object: project, completion: completion)
             }
         }
     }
     
-    static func persistProject(project: Project, completion : @escaping (_ success : Bool, _ error: Any?) -> Void){
-        DispatchQueue.main.async {
-            do {
-                try realm.write {
-                    realm.add(project, update:true)
-                }
-                completion(true, nil)
-            }catch{
-                completion(false, error)
-            }
-        }
-    }
-    
-    //Delete project from server and local db
     static func deleteProject(project: Project, completion : @escaping (_ success : Bool, _ error: Any?) -> Void){
         NetworkHelper.deleteDataWithDomain(domain: "projects", parameters:project.id){ (success, result, error) in
             if success {
-                DispatchQueue.main.async {
-                    do {
-                        try realm.write {
-                            realm.delete(project)
-                        }
-                        completion(success, nil)
-                    }catch{
-                        completion(false, error)
-                    }
+                if let result = result as? [String : Any], let project = Project.init(JSON: result){
+                    RealmHelper.deleteObject(object: project, completion: completion)
                 }
             } else {
-                completion(false, error)
+                RealmHelper.deleteObject(object: project, completion: completion)
             }
         }
         
     }
     
+    static func patchProject(project: Project, title: String, completion : @escaping (_ success : Bool, _ error: Any?) -> Void){
+        let parameters = "name=\(title)"
+        NetworkHelper.patchDataWithDomain(domain: "projects/\(project.id)", parameters:parameters){ (success, result, error) in
+            if success {
+                if let result = result as? [String : Any], let project = Project.init(JSON: result){
+                    RealmHelper.persistObject(object: project, completion: completion)
+                }
+            } else {
+                RealmHelper.persistObject(object: project, completion: completion)
+            }
+        }
+        
+    }
+}
+
+//Realm
+extension ProjectHelper{
     static func projectList() -> [Project]{
         return Array(realm.objects(Project.self))
     }
@@ -102,8 +98,10 @@ class ProjectHelper {
     static func projectWithId(projectId : String) -> Project?{
         return realm.objects(Project.self).filter("id == '\(projectId)'").first
     }
+    
+    
 }
-
+//Formating
 extension ProjectHelper{
     static func completedTasksForProject(project: Project) -> [Task]{
         return Array(project.tasks.filter({$0.completed == true}))

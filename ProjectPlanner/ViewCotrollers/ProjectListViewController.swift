@@ -44,7 +44,14 @@ extension ProjectListViewController{
     @IBAction func addProject(){
         let alertController = UIAlertController.init(title: "New Project", message: "", preferredStyle: .alert)
         
+        let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel){ _ in
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        
+        alertController.addAction(cancelAction)
+        
         let addAction = UIAlertAction.init(title: "Add", style: .default) { _ in
+            
             let titleTextField = alertController.textFields![0] as UITextField
             ProjectHelper.addProjectWithTitle(title: titleTextField.text ?? "") { (success, error) in
                 if success{
@@ -66,12 +73,6 @@ extension ProjectListViewController{
                 addAction.isEnabled = !(textField.text?.isEmpty)!
             }
         }
-        
-        let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel){ _ in
-            alertController.dismiss(animated: true, completion: nil)
-        }
-        
-        alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
     }
     
@@ -112,7 +113,6 @@ extension ProjectListViewController : UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
         let delete = UITableViewRowAction.init(style: .destructive, title: "Delete") { (action, indexpath) in
             let project = self.projectList[indexPath.row]
             ProjectHelper.deleteProject(project: project){ (success, error) in
@@ -120,7 +120,32 @@ extension ProjectListViewController : UITableViewDataSource, UITableViewDelegate
             }
         }
         
-        return [delete]
+        let changeName = UITableViewRowAction.init(style: .normal, title: "Rename"){ (action, indexpath) in
+            let project = self.projectList[indexPath.row]
+            
+            let alertController = UIAlertController.init(title: "New name", message: "", preferredStyle: .alert)
+            
+            let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel){ _ in
+                alertController.dismiss(animated: true, completion: nil)
+            }
+            
+            alertController.addAction(cancelAction)
+            
+            let editAction = UIAlertAction.init(title: "New name", style: .default, handler: { (action) in
+                ProjectHelper.patchProject(project: project, title: alertController.textFields?.first?.text ?? project.title){ (success, error) in
+                    self.projectList = ProjectHelper.projectList()
+                }
+            })
+            
+            alertController.addTextField { (textField) in
+                textField.placeholder = project.title
+            }
+
+            alertController.addAction(editAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+        }
+        return [delete, changeName]
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
