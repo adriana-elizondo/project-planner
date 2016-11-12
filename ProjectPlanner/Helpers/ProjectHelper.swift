@@ -101,6 +101,7 @@ extension ProjectHelper{
     
     
 }
+
 //Formating
 extension ProjectHelper{
     static func completedTasksForProject(project: Project) -> [Task]{
@@ -109,5 +110,17 @@ extension ProjectHelper{
     
     static func pendingTasksForProject(project : Project) -> [Task]{
         return Array(project.tasks.filter({$0.completed == false}))
+    }
+    
+    static func sortByName(projects : [Project]) -> [Project]{
+        return projects.sorted {$0.title < $1.title}
+    }
+    
+    static func sortByCompleted(projects : [Project]) -> [Project]{
+        return projects.sorted {completedTasksForProject(project: $0).count > completedTasksForProject(project: $1).count }
+    }
+    
+    static func sortByPending(projects : [Project]) -> [Project]{
+        return projects.sorted {pendingTasksForProject(project: $0).count > pendingTasksForProject(project: $1).count }
     }
 }

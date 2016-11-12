@@ -102,6 +102,7 @@ class TaskHelper{
     }
 }
 
+//Formatting
 extension TaskHelper{
     static func deadlineForTask(task: Task) -> String{
         let dateformatter = DateFormatter()
@@ -114,5 +115,27 @@ extension TaskHelper{
         return Double(date.timeIntervalSince1970 * 1000.0)
     }
     
+    static func sortByName(tasks : [Task]) -> [Task]{
+        return tasks.sorted {$0.title < $1.title}
+    }
+    
+    static func sortByCompleted(tasks : [Task]) -> [Task]{
+        
+        return tasks.sorted {Int($0.completed) > Int($1.completed)}
+    }
+    
+    static func sortByPending(tasks : [Task]) -> [Task]{
+        return tasks.sorted {Int($0.completed) < Int($1.completed)}
+    }
+    
+    static func sortByDeadline(tasks : [Task]) -> [Task]{
+        return tasks.sorted {$0.deadline < $1.deadline}
+    }
+    
+}
 
+extension Int {
+    init(_ bool:Bool) {
+        self = bool ? 1 : 0
+    }
 }

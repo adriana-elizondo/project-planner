@@ -83,6 +83,18 @@ extension ProjectListViewController{
             }
         }
     }
+    
+    @IBAction func sortByName(){
+        projectList = ProjectHelper.sortByName(projects: projectList)
+    }
+    
+    @IBAction func sortByCompleted(){
+        projectList = ProjectHelper.sortByCompleted(projects: projectList)
+    }
+    
+    @IBAction func sortByPending(){
+        projectList = ProjectHelper.sortByPending(projects: projectList)
+    }
 }
 
 extension ProjectListViewController : UITableViewDataSource, UITableViewDelegate{

@@ -55,6 +55,23 @@ class ProjectViewController: UIViewController {
     @IBAction func addTask(_ sender: Any) {
         self.performSegue(withIdentifier: "addTask", sender: self)
     }
+    
+    @IBAction func sortByName(){
+        taskList = TaskHelper.sortByName(tasks: taskList)
+    }
+    
+    @IBAction func sortByCompleted(){
+        taskList = TaskHelper.sortByCompleted(tasks: taskList)
+    }
+    
+    @IBAction func sortByPending(){
+        taskList = TaskHelper.sortByPending(tasks: taskList)
+    }
+    
+    @IBAction func sortByDeadline(){
+        taskList = TaskHelper.sortByDeadline(tasks: taskList)
+    }
+
 }
 
 extension ProjectViewController : UITableViewDataSource, UITableViewDelegate{
