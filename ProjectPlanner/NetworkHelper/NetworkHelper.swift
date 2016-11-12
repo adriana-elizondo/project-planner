@@ -44,6 +44,24 @@ class NetworkHelper{
         requestWith(url: request, completion: completion)
     }
     
+    static func patchDataWithDomain(domain: String, parameters: String,completion: @escaping RequestResponse){
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        }
+        
+        guard let url = URL.init(string: baseUrl+domain+"?"+parameters) else {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            return
+        }
+        
+        var request = URLRequest.init(url: url)
+        request.httpMethod = "PATCH"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
+        requestWith(url: request, completion: completion)
+    }
+
+    
     static func deleteDataWithDomain(domain: String, parameters: String,completion: @escaping RequestResponse){
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true

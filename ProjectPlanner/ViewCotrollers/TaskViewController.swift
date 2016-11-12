@@ -34,7 +34,11 @@ class TaskViewController : UIViewController {
     @IBOutlet weak var statusSwitch: UISwitch!
     @IBOutlet weak var okButton: UIButton!
     
-    var datePickerView = UIDatePicker()
+    var datePickerView = UIDatePicker(){
+        didSet{
+            datePickerView.date = Date()
+        }
+    }
     var isEditingTask : Bool = false
     var task = Task()
     var project = Project()
@@ -49,16 +53,34 @@ class TaskViewController : UIViewController {
     @IBAction func addTask(_ sender: Any) {
         let projectId = project.id
         let dateValue = TaskHelper.doubleValueOfDate(date: datePickerView.date)
-        TaskHelper.addTaskWithData(projectId: projectId, title: titleTextField.text ?? "", deadline: String(dateValue) , completed: statusSwitch.isOn.description){ (success, object) in
-            if success{
-                DispatchQueue.main.async {
-                    if let project = object as? Project{
-                        self.delegate?.projectWasUpdated(project: project)
+        
+        if isEditingTask {
+            let title = (titleTextField.text?.isEmpty)! ? task.title : titleTextField.text ?? ""
+            TaskHelper.patchTask(task: task, projectId: projectId, title: title, deadline: String(dateValue) , completed: statusSwitch.isOn.description){ (success, object) in
+                if success{
+                    DispatchQueue.main.async {
+                        if let project = object as? Project{
+                            self.delegate?.projectWasUpdated(project: project)
+                        }
+                        _ = self.navigationController?.popViewController(animated: true)
                     }
-                    _ = self.navigationController?.popViewController(animated: true)
+                }else{
+                    print("ooops \(object)")
                 }
-            }else{
-                print("ooops \(object)")
+            }
+
+        }else{
+            TaskHelper.addTaskWithData(projectId: projectId, title: titleTextField.text ?? "", deadline: String(dateValue) , completed: statusSwitch.isOn.description){ (success, object) in
+                if success{
+                    DispatchQueue.main.async {
+                        if let project = object as? Project{
+                            self.delegate?.projectWasUpdated(project: project)
+                        }
+                        _ = self.navigationController?.popViewController(animated: true)
+                    }
+                }else{
+                    print("ooops \(object)")
+                }
             }
         }
     }

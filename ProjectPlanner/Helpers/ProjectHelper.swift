@@ -27,8 +27,6 @@ class ProjectHelper {
     }
     
     static func parseAndPersistProjectList(jsonArray: [Any]?, completion:@escaping ([Project]) -> Void){
-        let realm = try! Realm()
-        
         guard jsonArray != nil else {return}
         
         for project in jsonArray!{
@@ -55,11 +53,9 @@ class ProjectHelper {
         NetworkHelper.postDataWithDomain(domain: "projects", parameters:"name="+project.title){ (success, result, error) in
             if success {
                 if let result = result as? [String : Any], let project = Project.init(JSON: result){
-                    project.isSynced = true
                     persistProject(project: project, completion: completion)
                 }
             } else {
-                project.isSynced = false
                 persistProject(project: project, completion: completion)
             }
         }
@@ -67,10 +63,9 @@ class ProjectHelper {
     
     static func persistProject(project: Project, completion : @escaping (_ success : Bool, _ error: Any?) -> Void){
         DispatchQueue.main.async {
-            let realm = try! Realm()
             do {
                 try realm.write {
-                    realm.add(project)
+                    realm.add(project, update:true)
                 }
                 completion(true, nil)
             }catch{
@@ -81,8 +76,6 @@ class ProjectHelper {
     
     //Delete project from server and local db
     static func deleteProject(project: Project, completion : @escaping (_ success : Bool, _ error: Any?) -> Void){
-        let realm = try! Realm()
-        
         NetworkHelper.deleteDataWithDomain(domain: "projects", parameters:project.id){ (success, result, error) in
             if success {
                 DispatchQueue.main.async {
@@ -103,12 +96,10 @@ class ProjectHelper {
     }
     
     static func projectList() -> [Project]{
-        let realm = try! Realm()
         return Array(realm.objects(Project.self))
     }
     
     static func projectWithId(projectId : String) -> Project?{
-        let realm = try! Realm()
         return realm.objects(Project.self).filter("id == '\(projectId)'").first
     }
 }

@@ -13,7 +13,6 @@ import ObjectMapper
 class Project : Object, Mappable{
     dynamic var id = ""
     dynamic var title = ""
-    var isSynced = false
     let tasks = List<Task>()
 
     override static func primaryKey() -> String? {

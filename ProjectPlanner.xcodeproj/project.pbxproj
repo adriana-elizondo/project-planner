@@ -27,7 +27,6 @@
 		26E6864B1DD3076500487C52 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26E686481DD3076500487C52 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		26E6864C1DD3076500487C52 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E686491DD3076500487C52 /* RealmSwift.framework */; };
 		26E6864D1DD3076500487C52 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26E686491DD3076500487C52 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		26E686511DD31C0200487C52 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E686501DD31C0200487C52 /* Parser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -68,7 +67,6 @@
 		263B63E01DD490C9009E91C1 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskViewController.swift; path = ViewCotrollers/TaskViewController.swift; sourceTree = "<group>"; };
 		26E686481DD3076500487C52 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Realm.framework; sourceTree = "<group>"; };
 		26E686491DD3076500487C52 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../RealmSwift.framework; sourceTree = "<group>"; };
-		26E686501DD31C0200487C52 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Parser.swift; path = Helpers/Parser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,7 +176,6 @@
 		26E6864F1DD31BED00487C52 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				26E686501DD31C0200487C52 /* Parser.swift */,
 				263B63D81DD33F5D009E91C1 /* ProjectHelper.swift */,
 				263B63DE1DD4819D009E91C1 /* TaskHelper.swift */,
 			);
@@ -219,7 +216,7 @@
 				TargetAttributes = {
 					2629070D1DD2CAC600916819 = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = W3RCCUG568;
+						DevelopmentTeam = GEEM4BQ58H;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -278,7 +275,6 @@
 			files = (
 				263B63D41DD332AE009E91C1 /* ProjectListViewController.swift in Sources */,
 				263B63DF1DD4819D009E91C1 /* TaskHelper.swift in Sources */,
-				26E686511DD31C0200487C52 /* Parser.swift in Sources */,
 				263B63DD1DD47D0C009E91C1 /* TaskTableViewCell.swift in Sources */,
 				263B63DB1DD4462D009E91C1 /* ProjectViewController.swift in Sources */,
 				263B63E11DD490C9009E91C1 /* TaskViewController.swift in Sources */,
@@ -408,7 +404,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = W3RCCUG568;
+				DEVELOPMENT_TEAM = GEEM4BQ58H;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ProjectPlanner",
@@ -417,6 +413,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = ProjectPlanner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adriana.ProjectPlanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -428,7 +425,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = W3RCCUG568;
+				DEVELOPMENT_TEAM = GEEM4BQ58H;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ProjectPlanner",
@@ -437,6 +434,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = ProjectPlanner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adriana.ProjectPlanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
