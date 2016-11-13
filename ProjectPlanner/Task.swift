@@ -14,7 +14,7 @@ class Task: Object, Mappable{
     dynamic var id = ""
     dynamic var title = ""
     dynamic var completed = false
-    var deadline = Date()
+    dynamic var deadline = Date()
     dynamic var projectId = ""
     
     override static func primaryKey() -> String? {
@@ -46,7 +46,7 @@ class Deadline : TransformType{
     
     public func transformFromJSON(_ value: Any?) -> Date? {
         if let timeInt = value as? Double {
-            return Date.init(timeIntervalSince1970: timeInt)
+            return Date.init(timeIntervalSince1970: timeInt/1000)
         }
         return nil
     }

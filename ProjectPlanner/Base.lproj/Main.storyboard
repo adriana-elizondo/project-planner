@@ -35,7 +35,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oRO-oh-4JE" id="zXW-sC-poG">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Project name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edC-KQ-doZ">
@@ -102,7 +102,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="TgW-VG-tmp"/>
                                 </connections>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4b-Eq-HXu">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4b-Eq-HXu" customClass="IndicatorToolbar" customModule="ProjectPlanner" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <color key="backgroundColor" red="0.15879096393802275" green="0.64005885352392711" blue="0.65098039215686276" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
@@ -158,6 +158,7 @@
                     <connections>
                         <outlet property="noProjectsLabel" destination="rrU-Rp-cy1" id="AR2-fY-f1j"/>
                         <outlet property="tableView" destination="jRx-tm-2UH" id="aoW-Xp-imB"/>
+                        <outlet property="toolBar" destination="F4b-Eq-HXu" id="zSp-VW-dgb"/>
                         <segue destination="M1Q-6M-YAE" kind="show" identifier="tasksSegue" id="lRd-Ty-xIM"/>
                     </connections>
                 </viewController>
@@ -192,7 +193,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T0m-y6-fNx" id="8se-7T-o9p">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssh-I5-JRD">
@@ -236,7 +237,7 @@
                                     <outlet property="delegate" destination="M1Q-6M-YAE" id="X55-7v-l0C"/>
                                 </connections>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xrQ-4t-ZLF">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xrQ-4t-ZLF" customClass="IndicatorToolbar" customModule="ProjectPlanner" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <items>
                                     <barButtonItem title="Name" id="WdZ-i9-6gm">
@@ -289,6 +290,7 @@
                     <connections>
                         <outlet property="noTasksLabel" destination="8Xl-va-vsL" id="nU1-sT-Vxe"/>
                         <outlet property="tableView" destination="AZb-wx-MXh" id="H2m-bV-YaN"/>
+                        <outlet property="toolBar" destination="xrQ-4t-ZLF" id="Iiy-Bw-eiR"/>
                         <segue destination="jCv-6H-nAb" kind="show" identifier="addTask" id="OuV-l9-nQF"/>
                     </connections>
                 </viewController>
@@ -395,7 +397,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="d7G-9I-VK5" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="srg-Ib-yW6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="srg-Ib-yW6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.098039215686274508" green="0.37254901960784315" blue="0.65098039215686276" alpha="1" colorSpace="calibratedRGB"/>

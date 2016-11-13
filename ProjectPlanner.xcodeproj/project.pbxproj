@@ -14,6 +14,7 @@
 		262907251DD2CEF400916819 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262907241DD2CEF400916819 /* NetworkHelper.swift */; };
 		262907281DD2D21100916819 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262907271DD2D21100916819 /* Project.swift */; };
 		2629072A1DD2D21A00916819 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262907291DD2D21A00916819 /* Task.swift */; };
+		263387571DD81C0200149168 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263387561DD81C0200149168 /* UIHelper.swift */; };
 		263B63D01DD32666009E91C1 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263B63CF1DD32666009E91C1 /* ObjectMapper.framework */; };
 		263B63D11DD32666009E91C1 /* ObjectMapper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 263B63CF1DD32666009E91C1 /* ObjectMapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		263B63D41DD332AE009E91C1 /* ProjectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B63D31DD332AE009E91C1 /* ProjectListViewController.swift */; };
@@ -59,6 +60,7 @@
 		262907291DD2D21A00916819 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		2629072C1DD3042400916819 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../Downloads/realm-swift-2.0.3/ios/swift-3.0.1/Realm.framework"; sourceTree = "<group>"; };
 		2629072D1DD3042400916819 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../../Downloads/realm-swift-2.0.3/ios/swift-3.0.1/RealmSwift.framework"; sourceTree = "<group>"; };
+		263387561DD81C0200149168 /* UIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIHelper.swift; path = Helpers/UIHelper.swift; sourceTree = "<group>"; };
 		263B63CF1DD32666009E91C1 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = ../Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		263B63D31DD332AE009E91C1 /* ProjectListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectListViewController.swift; path = ViewCotrollers/ProjectListViewController.swift; sourceTree = "<group>"; };
 		263B63D61DD33342009E91C1 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectTableViewCell.swift; path = TableViewCells/ProjectTableViewCell.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				263B63DE1DD4819D009E91C1 /* TaskHelper.swift */,
 				26713DFB1DD6E83F000D0992 /* RealmHelper.swift */,
 				26713DFD1DD709D1000D0992 /* UserDefaultsHelper.swift */,
+				263387561DD81C0200149168 /* UIHelper.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				263B63D91DD33F5D009E91C1 /* ProjectHelper.swift in Sources */,
 				262907281DD2D21100916819 /* Project.swift in Sources */,
 				263B63D71DD33342009E91C1 /* ProjectTableViewCell.swift in Sources */,
+				263387571DD81C0200149168 /* UIHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

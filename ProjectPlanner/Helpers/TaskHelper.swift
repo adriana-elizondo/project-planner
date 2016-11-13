@@ -86,7 +86,7 @@ extension TaskHelper{
     }
     
     static func doubleValueOfDate(date: Date) -> Double{
-        return Double(date.timeIntervalSince1970 / 1000.0)
+        return Double(date.timeIntervalSince1970 * 1000.0)
     }
     
     static func sortByName(tasks : [Task]) -> [Task]{

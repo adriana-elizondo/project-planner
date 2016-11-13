@@ -16,6 +16,7 @@ class ProjectViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var toolBar: IndicatorToolbar!
     @IBOutlet weak var noTasksLabel: UILabel!
     
     var taskList = [Task](){
@@ -58,18 +59,22 @@ class ProjectViewController: UIViewController {
     
     @IBAction func sortByName(){
         taskList = TaskHelper.sortByName(tasks: taskList)
+        toolBar.animateLayerWithIndex(index: 0)
     }
     
     @IBAction func sortByCompleted(){
         taskList = TaskHelper.sortByCompleted(tasks: taskList)
+        toolBar.animateLayerWithIndex(index: 2)
     }
     
     @IBAction func sortByPending(){
         taskList = TaskHelper.sortByPending(tasks: taskList)
+        toolBar.animateLayerWithIndex(index: 4)
     }
     
     @IBAction func sortByDeadline(){
         taskList = TaskHelper.sortByDeadline(tasks: taskList)
+        toolBar.animateLayerWithIndex(index: 6)
     }
     
 }
@@ -85,8 +90,7 @@ extension ProjectViewController : UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell") as? TaskTableViewCell
-        let task : Task = taskList[indexPath.row]
-        cell?.setDataWithTask(task: task)
+        cell?.setDataWithTask(task: taskList[indexPath.row])
         cell?.tag = indexPath.row
         
         return cell ?? UITableViewCell()

@@ -17,6 +17,7 @@ class ProjectListViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var toolBar: IndicatorToolbar!
     @IBOutlet weak var tableView : UITableView!{
         didSet{
             tableView.tableFooterView = UIView()
@@ -29,6 +30,10 @@ class ProjectListViewController: UIViewController {
         super.viewWillAppear(animated)
         self.title = "My Projects"
         projectList = ProjectHelper.projectList()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -87,14 +92,19 @@ extension ProjectListViewController{
     
     @IBAction func sortByName(){
         projectList = ProjectHelper.sortByName(projects: projectList)
+        toolBar.animateLayerWithIndex(index: 0)
     }
     
     @IBAction func sortByCompleted(){
         projectList = ProjectHelper.sortByCompleted(projects: projectList)
+        toolBar.animateLayerWithIndex(index: 2)
+        
     }
     
     @IBAction func sortByPending(){
         projectList = ProjectHelper.sortByPending(projects: projectList)
+        toolBar.animateLayerWithIndex(index: 4)
+        
     }
 }
 
@@ -153,7 +163,7 @@ extension ProjectListViewController : UITableViewDataSource, UITableViewDelegate
             alertController.addTextField { (textField) in
                 textField.placeholder = project.title
             }
-
+            
             alertController.addAction(editAction)
             self.present(alertController, animated: true, completion: nil)
             
