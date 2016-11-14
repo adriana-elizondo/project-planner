@@ -56,7 +56,10 @@ class ProjectHelper {
                     RealmHelper.persistObject(object: project, completion: completion)
                 }
             } else {
-                RealmHelper.persistObject(object: project, completion: completion)
+                DispatchQueue.main.async {
+                    project.id = UUID().uuidString
+                    RealmHelper.persistObject(object: project, completion: completion)
+                }
             }
         }
     }

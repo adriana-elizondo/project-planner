@@ -31,7 +31,10 @@ class TaskHelper{
                     RealmHelper.appendToList(taskToAppend: newTask, projectId: projectId, completion: completion)
                 }
             } else {
-                RealmHelper.appendToList(taskToAppend: task, projectId: projectId, completion: completion)
+                DispatchQueue.main.async {
+                    task.id = UUID().uuidString
+                    RealmHelper.appendToList(taskToAppend: task, projectId: projectId, completion: completion)
+                }
             }
         }
     }
